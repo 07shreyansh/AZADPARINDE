@@ -43,6 +43,7 @@ app.post('/register', async (req,res) => {
     console.log(e);
     res.status(400).json(e);
   }
+  // alert("registered sucessfully")
 });
 
 app.post('/login', async (req,res) => {
@@ -51,6 +52,7 @@ app.post('/login', async (req,res) => {
   const passOk = bcrypt.compareSync(password, userDoc.password);
   if (passOk) {
     // logged in
+    // alert("logged in");
     jwt.sign({username,id:userDoc._id}, secret, {}, (err,token) => {
       if (err) throw err;
       res.cookie('token', token).json({
